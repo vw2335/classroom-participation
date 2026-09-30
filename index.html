@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Before someone speaks — a classroom study</title>
+<style>
+/* Self-contained: paste these styles into CodePen's CSS panel. */
+:root{color-scheme:light;--paper:#f5f3ec;--ink:#303b36;--muted:#757c73;--line:#d8dcd1;--accent:#44644f;--wash:#e5ebdd}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}button{font:inherit}main{max-width:1080px;margin:auto;padding:38px 48px 28px}.eyebrow{font-size:10px;letter-spacing:2px;text-transform:uppercase}.masthead{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:17px;color:var(--muted)}header{text-align:center;padding:36px 0 24px}header .eyebrow{color:var(--muted)}h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(29px,4vw,44px);font-weight:normal;letter-spacing:-1.2px;line-height:1.2;max-width:650px;margin:15px auto}header p{color:var(--muted);font-size:13px;line-height:1.7;margin:0}.study{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#faf9f5}.scene{position:relative;padding:23px 28px 19px;background:radial-gradient(ellipse at center,#edf0e600,transparent);transition:background 2s}.scene.started{background:radial-gradient(ellipse at center,#e4eddf 0%,#f7f8f0 75%)}.scene-top{display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}.room-status{display:flex;align-items:center;gap:7px}.dot{width:6px;height:6px;border-radius:50%;background:#9ca395;transition:background 1s}.started .dot{background:var(--accent)}.public-space{height:95px;display:flex;align-items:center;justify-content:center;margin-top:5px}.silence{font-family:Georgia,serif;font-style:italic;color:#979d91;font-size:15px}.speech{background:var(--accent);color:#fff;border-radius:6px;padding:13px 20px;text-align:center;max-width:540px;box-shadow:0 4px 14px #3046320d;animation:arrive .5s ease}.speech small{display:block;font-size:9px;letter-spacing:1.6px;text-transform:uppercase;color:#d5e1ce;margin-bottom:6px}.speech p{margin:0;font-family:Georgia,serif;font-size:18px;line-height:1.35}.students{max-width:620px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:17px 40px;padding:10px 10px 14px}.seat{position:relative;min-width:0;display:flex;justify-content:center}.student{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;border:0;background:none;cursor:pointer;color:var(--muted);padding:7px 18px;border-radius:8px;touch-action:manipulation}.student:focus-visible{outline:2px solid var(--accent);outline-offset:4px}.person{display:grid;place-items:center;width:53px;height:53px;border-radius:50%;border:1px solid #afb6a6;background:#e1e4d9;transition:background 1.2s,transform .6s,border-color 1.2s,box-shadow 1.2s}.person::after{content:'';width:5px;height:5px;border-radius:50%;background:#87917f;transition:background .7s}.name{font-size:9px;letter-spacing:1.3px;text-transform:uppercase;white-space:nowrap}.student:hover .person{transform:translateY(-3px);border-color:#71836b}.student.ready .person{background:#cddac3;border-color:#829b74;box-shadow:0 0 0 5px #dee8d84f}.student.spoken .person{background:#79946f;border-color:#66855d}.student.spoken .person::after{background:#f3f5ed}.student.speaking .person{transform:scale(1.12);background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 6px #44644f16,0 0 0 13px #44644f08}.student.first .name::after{content:' · first';color:var(--accent)}.thought{position:absolute;bottom:calc(100% - 3px);left:50%;transform:translateX(-50%) translateY(5px);z-index:4;width:210px;padding:13px 15px;background:#fffef9;border:1px solid #d7dbcf;border-radius:6px;box-shadow:0 5px 20px #303b3610;pointer-events:none;opacity:0;visibility:hidden;transition:opacity .15s,transform .15s}.thought::after{content:'';position:absolute;bottom:-5px;left:calc(50% - 5px);height:8px;width:8px;background:#fffef9;border-right:1px solid #d7dbcf;border-bottom:1px solid #d7dbcf;transform:rotate(45deg)}.thought small{display:block;color:var(--muted);font-size:8px;text-transform:uppercase;letter-spacing:1.4px;margin-bottom:6px}.thought p{margin:0;font-family:Georgia,serif;font-size:15px;line-height:1.4}.seat:hover .thought,.seat:focus-within .thought,.seat.peek .thought{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}.legend{display:flex;justify-content:center;gap:22px;font-size:10px;color:var(--muted);padding:9px 0 2px}.legend span{display:flex;align-items:center;gap:6px}.swatch{width:8px;height:8px;border-radius:50%;background:#e1e4d9;border:1px solid #afb6a6}.swatch.ready{background:#cddac3;border-color:#829b74}.swatch.spoken{background:#79946f;border-color:#66855d}.bottom{padding:21px 27px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px}.phase{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);margin-bottom:7px}.description{font-family:Georgia,serif;font-size:17px;line-height:1.4;margin:0}.reset{border:1px solid #bdc6b6;border-radius:4px;background:transparent;color:var(--ink);padding:10px 16px;cursor:pointer;white-space:nowrap}.reset:hover{background:#e8ecdf}.reset:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.progress{display:flex;gap:5px;margin:0 0 12px}.progress i{height:3px;width:27px;background:#dce0d5;transition:background 1s}.progress i.active{background:var(--accent)}footer{display:flex;justify-content:space-between;gap:24px;padding-top:21px;color:var(--muted);font-size:11px;line-height:1.6}footer p{margin:0}.count{white-space:nowrap;font-variant-numeric:tabular-nums}@keyframes arrive{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}@media(max-width:600px){main{padding:22px 17px}.masthead{font-size:8px;letter-spacing:1.3px}header{padding:26px 0 21px}h1{letter-spacing:-.7px}.scene{padding:20px 14px 15px}.students{gap:20px 5px;padding:10px 0}.student{padding:7px 9px}.thought{width:170px}.seat:nth-child(3n+1) .thought{left:0;transform:translateY(0)}.seat:nth-child(3n) .thought{left:auto;right:0;transform:translateY(0)}.bottom{padding:19px 17px}.description{font-size:15px}.legend{gap:12px;font-size:9px}.public-space{height:109px}.speech p{font-size:16px}footer{font-size:10px;gap:15px}}@media(prefers-reduced-motion:reduce){*,*::after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<main>
+<div class="masthead eyebrow"><span>Small moments / collective behavior</span><span>Study 01</span></div>
+<header><div class="eyebrow">A question to the room</div><h1>“What did you notice about today’s reading?”</h1><p id="instruction">Hover over a student to hear their private thought.<br>Click anyone to let them speak first.</p></header>
+<section class="study" aria-label="Interactive classroom participation study">
+<div class="scene" id="scene"><div class="scene-top"><span>Seminar · 9 students</span><span class="room-status"><i class="dot"></i><span id="atmosphere">A quiet room</span></span></div>
+<div class="public-space" id="public" aria-live="polite" aria-atomic="true"><span class="silence">A question hangs in the air.</span></div>
+<div class="students" id="students"></div>
+<div class="legend"><span><i class="swatch"></i>Quiet</span><span><i class="swatch ready"></i>Warming up</span><span><i class="swatch spoken"></i>Has spoken</span></div></div>
+<div class="bottom"><div aria-live="polite" aria-atomic="true"><div class="progress" aria-hidden="true"><i class="active"></i><i></i><i></i><i></i></div><div class="phase" id="phase">01 / The silence</div><p class="description" id="description">Nine people. Plenty of thoughts. No one speaking.</p></div><button class="reset" id="reset" type="button">↺ Reset</button></div>
+</section>
+<footer><p>Visible silence doesn’t mean an empty room.<br>Sometimes, participation begins with a little permission.</p><p class="count"><span id="count">0</span> of 9 have spoken<br><span>Illustrative interaction</span></p></footer>
+</main>
+<script>
+// Paste this script into CodePen's JS panel. No libraries or assets required.
+const thoughts = ["I have an idea.","I’m not sure if this is right.","I have a question.","I disagree a little.","I want to say something, but I don’t want to go first.","I’m waiting to see what someone else says.","That passage reminded me of something.","I need a little more time to put it into words.","I wonder if anyone else noticed that."];
+const comments = ["I noticed how the narrator kept changing their mind.","Maybe the uncertainty is part of the point?","Why do you think the ending was left open?","I read that passage a little differently.","There’s one sentence I keep coming back to.","That connects to something I noticed, too.","It reminded me of our discussion last week.","I’m still thinking about what was left unsaid.","I noticed that, too. Especially in the last paragraph."];
+const $ = id => document.getElementById(id);
+let started = false, timers = [], spoken = new Set(), touchChoice = null;
+const buttons = thoughts.map((thought, i) => {
+ const seat = document.createElement('div'); seat.className = 'seat';
+ const button = document.createElement('button'); button.type='button'; button.className='student'; button.setAttribute('aria-label',`Student ${i+1}: let this student speak first`); button.setAttribute('aria-describedby',`thought-${i}`);
+ button.innerHTML = `<span class="person" aria-hidden="true"></span><span class="name">Student ${String(i+1).padStart(2,'0')}</span>`;
+ const bubble = document.createElement('div'); bubble.className='thought'; bubble.id=`thought-${i}`; bubble.innerHTML=`<small>Private thought</small><p>“${thought}”</p>`;
+ seat.append(button,bubble); $('students').append(seat);
+ button.addEventListener('pointerdown',e=>{button.dataset.touch=e.pointerType==='touch'?'true':'false';});
+ button.addEventListener('click',e=>{
+  if(button.dataset.touch==='true' && e.detail!==0 && touchChoice!==i){ document.querySelectorAll('.peek').forEach(el=>el.classList.remove('peek'));seat.classList.add('peek');touchChoice=i;button.dataset.touch='false';return; }
+  button.dataset.touch='false'; if(!started) start(i);
+ });
+ return button;
+});
+if(matchMedia('(pointer: coarse)').matches) $('instruction').innerHTML='Tap a student to hear their private thought.<br>Tap that student again to let them speak first.';
+function later(fn,delay){timers.push(setTimeout(fn,delay));}
+function phase(n,title,description){$('phase').textContent=`0${n} / ${title}`;$('description').textContent=description;document.querySelectorAll('.progress i').forEach((el,i)=>el.classList.toggle('active',i<n));}
+function speak(i){buttons.forEach(b=>b.classList.remove('speaking'));buttons[i].classList.remove('ready');buttons[i].classList.add('spoken','speaking');spoken.add(i);$('count').textContent=spoken.size;$('public').innerHTML=`<div class="speech"><small>Student ${String(i+1).padStart(2,'0')} · aloud</small><p>“${comments[i]}”</p></div>`;}
+function start(first){
+ started=true;document.querySelectorAll('.peek').forEach(el=>el.classList.remove('peek'));buttons[first].classList.add('first');buttons.forEach((b,i)=>b.setAttribute('aria-label',`Student ${i+1}: explore private thought`));
+ speak(first);phase(2,'The first voice','One person makes a thought public. Others listen.');$('atmosphere').textContent='Someone goes first';
+ const others=buttons.map((_,i)=>i).filter(i=>i!==first);
+ // Keep two students quiet; the selected student always gets to speak.
+ const joining=others.slice(0,6);
+ later(()=>{$('scene').classList.add('started');$('atmosphere').textContent='The room opens up';phase(3,'A shift in the room','A first voice gives others a little more room to enter.');joining.slice(0,3).forEach(i=>buttons[i].classList.add('ready'));},2400);
+ joining.forEach((i,index)=>{
+  later(()=>buttons[i].classList.add('ready'),3300+index*2100);
+  later(()=>speak(i),4800+index*2400);
+ });
+ later(()=>{buttons.forEach(b=>b.classList.remove('speaking'));$('atmosphere').textContent='A shared conversation';phase(4,'More voices, at their own pace','Seven have spoken. Two are still quietly thinking.');$('public').innerHTML='<span class="silence">The silence has become a conversation.</span>';},20200);
+}
+$('reset').addEventListener('click',()=>{
+ timers.forEach(clearTimeout);timers=[];started=false;spoken.clear();touchChoice=null;
+ buttons.forEach((b,i)=>{b.className='student';b.dataset.touch='false';b.setAttribute('aria-label',`Student ${i+1}: let this student speak first`);});document.querySelectorAll('.peek').forEach(el=>el.classList.remove('peek'));
+ $('scene').classList.remove('started');$('atmosphere').textContent='A quiet room';$('public').innerHTML='<span class="silence">A question hangs in the air.</span>';$('count').textContent='0';phase(1,'The silence','Nine people. Plenty of thoughts. No one speaking.');
+});
+</script>
+</body>
+</html>
